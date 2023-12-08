@@ -1,0 +1,21 @@
+import requests
+
+PCHEM_SERVICE_IP = "127.0.0.1"
+PCHEM_SERVICE_PORT = 8080
+
+def call_api(api_name, api_args):
+    # Make an HTTP POST request to the Propsim library
+    http_response = requests.post("http://" + PCHEM_SERVICE_IP + ":" + str(PCHEM_SERVICE_PORT) + "/api", 
+                            json={"api_name": api_name, "args":api_args})
+    pchem_response = http_response.json()
+    print("HTTP Response: " + str(http_response))
+    print("PCHEM Service Response: " + str(pchem_response))
+    return pchem_response
+
+def get_version():
+    result = call_api("get_version", {})
+    return result
+
+def get_identity():
+    result = call_api("get_identity", {})
+    return result

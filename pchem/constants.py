@@ -1,0 +1,6 @@
+API_NAME_KEY = "api_name"
+API_ARGS_KEY = "args"
+EXECUTION_RESULT_KEY = "result"
+IS_VALID_KEY = "is_valid"
+VALIDATION_ERRORS_KEY = "validation_errors"
+WAS_EXECUTED_KEY = "was_executed"
