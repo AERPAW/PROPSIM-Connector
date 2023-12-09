@@ -1,5 +1,7 @@
 import socket
 import toml
+import utils
+from constants import *
 from threading import Lock
 
 CONFIG_PATH = "./config.toml"
@@ -18,20 +20,22 @@ class PropsimSocket(object):
             self._propsim_ip = config['propsim']['ip']
             self._propsim_port = config['propsim']['port']
             self._propsim_lock = Lock()
+            self._timeout = config['propsim']['timeout']
 
     def execute_at_command(self, at_command):
         try:
             self._propsim_lock.acquire()
             propsim_connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            propsim_connection.settimeout(self._timeout)
             propsim_connection.connect((self._propsim_ip, self._propsim_port))
             propsim_connection.sendall(at_command.encode("utf-8"))
             response = ""
             while not "\n" in response:
                 response += propsim_connection.recv(1024).decode("utf-8")
             propsim_connection.close()
-            response = response.strip()
+            pchem_response = utils.create_pchem_response(RESPONSE_STATUS.OK, "", response.strip())
         except Exception as e:
-            response = str(e)
+            pchem_response = utils.create_pchem_response(RESPONSE_STATUS.EXECUTION_ERROR, str(e))
         finally:
             self._propsim_lock.release() 
-            return response
+            return pchem_response

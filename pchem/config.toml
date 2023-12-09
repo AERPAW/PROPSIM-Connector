@@ -1,6 +1,8 @@
 [propsim]
 ip = "192.168.20.1"
 port = 3334
+timeout = 10 # seconds
 
 [pchem_server]
+bind_ip = "0.0.0.0"
 port = 8080

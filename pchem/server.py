@@ -1,7 +1,8 @@
 from flask import Flask, json, request
+from constants import *
 import apis
-import constants
 import toml
+import utils
 import logger
 
 CONFIG_PATH = "./config.toml"
@@ -13,33 +14,30 @@ def run_api():
     try:
         print(request.json)
         # Extract API name and arguments
-        if constants.API_NAME_KEY in request.json:
-            api_name = request.json[constants.API_NAME_KEY]
-            args = request.json[constants.API_ARGS_KEY] if constants.API_ARGS_KEY in request.json else {}        
+        if API_NAME_KEY in request.json:
+            api_name = request.json[API_NAME_KEY]
+            args = request.json[API_ARGS_KEY] if API_ARGS_KEY in request.json else {}        
             # Execute the API
-            b_api_exists = hasattr(apis, api_name) and callable(getattr(apis, api_name))
-            if b_api_exists:
-                api_func = getattr(apis, api_name)
-                api_result = api_func(args)
-            else:
-                api_result = {constants.IS_VALID_KEY: False, constants.VALIDATION_ERRORS_KEY:"API not implemented."}
+            pchem_response = apis.run(api_name, args)
         else:
-            api_result = {constants.IS_VALID_KEY: False, constants.VALIDATION_ERRORS_KEY:"Malformed request. POST JSON does not contain API name. API name should be specified as 'api_name'."}
+            pchem_response = utils.create_pchem_response(RESPONSE_STATUS.HTTP_REQUEST_ERROR, "Malformed request. POST JSON does not contain API name. API name should be specified as 'api_name'.", 0, "")
         
         # Return execution result
         http_response_status = 400 
-        if api_result[constants.IS_VALID_KEY]:
+        if pchem_response[PCHEM_STATUS_KEY] == RESPONSE_STATUS.OK:
             http_response_status = 200 
         
         http_response = server_app.response_class(
-            response = json.dumps(api_result),
+            response = json.dumps(pchem_response),
             status = http_response_status,
             mimetype = 'application/json'
         )
         return http_response
     except Exception as e:
+        http_response_status = 400 
+        pchem_response = utils.create_pchem_response(RESPONSE_STATUS.INTERNAL_SERVER_ERROR, "Internal Server Error: " + str(e))
         http_response = server_app.response_class(
-            response = {constants.IS_VALID_KEY: False, constants.VALIDATION_ERRORS_KEY:"Internal Server Error: " + str(e)},
+            response = json.dumps(pchem_response),
             status = http_response_status,
             mimetype = 'application/json'
         )
@@ -49,4 +47,5 @@ if __name__ == '__main__':
       with open(CONFIG_PATH, 'r') as f:
             config = toml.load(f)
             pchem_port = config["pchem_server"]["port"]
-            server_app.run(host='0.0.0.0', port=pchem_port)
+            pchem_ip = config["pchem_server"]["bind_ip"]
+            server_app.run(host=pchem_ip, port=pchem_port)
