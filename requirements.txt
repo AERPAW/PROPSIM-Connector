@@ -2,4 +2,4 @@ sphinx
 sphinx-rtd-theme
 sphinx-argparse
 enum-tools[sphinx]
-flake
+flake8
