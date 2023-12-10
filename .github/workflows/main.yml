@@ -25,11 +25,11 @@ jobs:
       - uses: actions/setup-python@v3
       - run: git config user.name 'github-actions[bot]' && git config user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Install deps
-        run: python3 -m venv .venv && .venv/bin/pip install -U pip wheel && .venv/bin/activate && pip install -Ur requirements.txt 
+        run: python3 -m pip install -U pip wheel && python3 -m pip install -Ur requirements.txt 
       - name: Make build folder 
         run:  find . -not -name 'docs' -not -name '.nojekyll' -not -name '.' -not -name '.git*' -not -name '.venv*' -maxdepth 1 -exec rm -rf {} +
       - name: Render docs
-        run: .venv/bin/sphinx-build -M html docs/source/ ./ -E -d .doctree
+        run: sphinx-build -M html docs/source/ ./ -E -d .doctree
       - name: Cleanup
         run: cp -r docs/build/html/* ./ && touch .nojekyll && rm -rf .venv
       - name: Commit and push to gh-pages
