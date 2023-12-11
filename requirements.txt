@@ -1,5 +1,6 @@
 sphinx
 sphinx-rtd-theme
 sphinx-argparse
+sphinx-simplepdf
 enum-tools[sphinx]
-flake
+flake8

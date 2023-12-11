@@ -1,9 +1,9 @@
-import constants
+import pchem.constants as constants
 
 # Validation logic for API arguments. 
 # Each validator must return: 
 # 1) Boolean value indicating whether the args are valid.
-# 2) Description of validation errors, if any.
+# 2) String description of the validation errors, if any.
 
 def get_version(args):
     is_valid = True

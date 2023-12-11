@@ -4,7 +4,7 @@ API_NAME_KEY = "api_name"
 API_ARGS_KEY = "args"
 IS_VALID_KEY = "is_valid"
 VALIDATION_ERRORS_KEY = "validation_errors"
-PCHEM_ERROR_KEY = "error"
+PCHEM_ERROR_KEY = "errors"
 PCHEM_RESULT_KEY = "result"
 PCHEM_STATUS_KEY = "status"
 

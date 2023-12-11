@@ -1,7 +1,7 @@
 import socket
 import toml
 import utils
-from constants import *
+from pchem.constants import *
 from threading import Lock
 
 CONFIG_PATH = "./config.toml"
@@ -30,9 +30,11 @@ class PropsimSocket(object):
             propsim_connection.connect((self._propsim_ip, self._propsim_port))
             propsim_connection.sendall(at_command.encode("utf-8"))
             response = ""
-            while not "\n" in response:
-                response += propsim_connection.recv(1024).decode("utf-8")
-            propsim_connection.close()
+            # Propsim will send a respond to a query. A query contains ? in the at_command string.
+            if "?" in at_command:
+                while not "\n" in response:
+                    response += propsim_connection.recv(1024).decode("utf-8")
+                propsim_connection.close()
             pchem_response = utils.create_pchem_response(RESPONSE_STATUS.OK, "", response.strip())
         except Exception as e:
             pchem_response = utils.create_pchem_response(RESPONSE_STATUS.EXECUTION_ERROR, str(e))
