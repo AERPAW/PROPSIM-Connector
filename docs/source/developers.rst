@@ -1,2 +1,2 @@
-PCHEM Developers Document
+Developers Document
 ###########################

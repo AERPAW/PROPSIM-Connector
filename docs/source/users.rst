@@ -1,2 +1,2 @@
-PCHEM Users Document
+Users Document
 ######################

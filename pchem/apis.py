@@ -33,6 +33,38 @@ def get_identity(args):
     at_command = "*IDN?\n"
     return at_command
 
+def open_emulation(args):
+    at_command = "calc:filt:file " + args["sim_file_path"] + "\n"
+    return at_command
+
+def edit_emulation(args):
+    at_command = "calc:filt:edit " + args["sim_file_path"] + "\n"
+    return at_command
+
+def start_emulation_after_edit(args):
+    at_command = "calc:filt:connect\n"
+    return at_command
+
+def start_emulation(args):
+    at_command = "diag:simu:go\n"
+    return at_command
+
+def pause_emulation(args):
+    at_command = "diag:simu:stop\n"
+    return at_command
+
+def resume_emulation(args):
+    at_command = "diag:simu:cont\n"
+    return at_command
+
+def close_emulation(args):
+    at_command = "diag:simu:close\n"
+    return at_command
+
+# def enable_input(args):
+#     at_command = "inp:en\n"
+#     return at_command
+
 # A wrapper to execute APIs. Ensures that the API's validator is always called. Returns the PCHEM response.
 def run(api_name, args):
     pchem_response = utils.create_pchem_response()

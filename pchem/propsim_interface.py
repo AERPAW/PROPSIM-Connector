@@ -1,7 +1,7 @@
 import socket
 import toml
 import utils
-from pchem.constants import *
+from constants import *
 from threading import Lock
 
 CONFIG_PATH = "./config.toml"

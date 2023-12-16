@@ -19,3 +19,32 @@ def get_version():
 def get_identity():
     result = call_api("get_identity", {})
     return result
+
+def open_emulation(sim_file_path):
+    result = call_api("open_emulation", {"sim_file_path": sim_file_path})
+    return result
+
+def edit_emulation(sim_file_path):
+    result = call_api("edit_emulation", {"sim_file_path": sim_file_path})
+    return result
+
+def start_emulation():
+    result = call_api("start_emulation", {})
+    return result
+
+def start_emulation_after_edit():
+    result = call_api("start_emulation_after_edit", {})
+    return result
+
+def pause_emulation():
+    result = call_api("pause_emulation", {})
+    return result
+
+def resume_emulation():
+    result = call_api("resume_emulation", {})
+    return result
+
+def close_emulation():
+    result = call_api("close_emulation", {})
+    return result
+
