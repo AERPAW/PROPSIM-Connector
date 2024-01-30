@@ -1,4 +1,4 @@
-import sys
+import sys, time
 sys.path.append("../")
 
 from pchem import client as pchem_client
@@ -23,8 +23,8 @@ else:
     print("Error: " + api_result[PCHEM_ERROR_KEY])
 print("------------------------------")
 
-print("Propsim Open Emulation")
-api_result = pchem_client.open_emulation("E://simmulation.sum")
+print("Open Emulation")
+api_result = pchem_client.open_emulation("D:\\User Emulations\\Anil\\srsran_4g_siso.smu")
 if api_result[PCHEM_STATUS_KEY] == RESPONSE_STATUS.OK:
     pchem_result = api_result[PCHEM_RESULT_KEY]
     print("Result = " + str(pchem_result))
@@ -33,7 +33,54 @@ else:
 
 print("------------------------------")
 
-print("Propsim Close Emulation")
+print("Start Emulation")
+api_result = pchem_client.start_emulation()
+if api_result[PCHEM_STATUS_KEY] == RESPONSE_STATUS.OK:
+    pchem_result = api_result[PCHEM_RESULT_KEY]
+    print("Result = " + str(pchem_result))
+else:
+    print("Error: " + api_result[PCHEM_ERROR_KEY])
+
+print("------------------------------")
+
+time.sleep(5)
+
+print("Set Input-1 loss to 30 dB")
+api_result = pchem_client.set_input_loss(1, 30)
+if api_result[PCHEM_STATUS_KEY] == RESPONSE_STATUS.OK:
+    pchem_result = api_result[PCHEM_RESULT_KEY]
+    print("Result = " + str(pchem_result))
+else:
+    print("Error: " + api_result[PCHEM_ERROR_KEY])
+
+print("------------------------------")
+
+time.sleep(5)
+
+print("Set Output-1 gain to -20 dB")
+api_result = pchem_client.set_output_gain(1, -20)
+if api_result[PCHEM_STATUS_KEY] == RESPONSE_STATUS.OK:
+    pchem_result = api_result[PCHEM_RESULT_KEY]
+    print("Result = " + str(pchem_result))
+else:
+    print("Error: " + api_result[PCHEM_ERROR_KEY])
+
+print("------------------------------")
+time.sleep(5)
+
+print("Pause emulation")
+api_result = pchem_client.pause_emulation()
+if api_result[PCHEM_STATUS_KEY] == RESPONSE_STATUS.OK:
+    pchem_result = api_result[PCHEM_RESULT_KEY]
+    print("Result = " + str(pchem_result))
+else:
+    print("Error: " + api_result[PCHEM_ERROR_KEY])
+
+print("------------------------------")
+
+time.sleep(2)
+
+print("Close Emulation")
 api_result = pchem_client.close_emulation()
 if api_result[PCHEM_STATUS_KEY] == RESPONSE_STATUS.OK:
     pchem_result = api_result[PCHEM_RESULT_KEY]

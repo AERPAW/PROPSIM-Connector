@@ -13,7 +13,7 @@ def get_identity(args):
     return _no_validation()
 
 def open_emulation(args):
-    is_valid = utils.check_file_extension(args["sim_file_path"], ".sum")
+    is_valid = utils.check_file_extension(args["sim_file_path"], ".smu")
     validation_errors = ""
     if not is_valid:
         validation_errors = '"The Propsim simulation file path must have an extension ".sum"'
@@ -43,20 +43,28 @@ def resume_emulation(args):
 def close_emulation(args):
     return _no_validation()
 
-# def set_input_state(args):
-#     return _no_validation()
+def set_input_loss(args):
+    is_valid = True
+    validation_errors = ""
+    # Check Input numbers
+    if args["loss"] > 100 or args["loss"] < -100:
+        is_valid = False
+        validation_errors = "loss must be between -100 and 100 dB"
 
-# def set_output_state(args):
-#     is_valid = True
-#     validation_errors = ""
+    return {constants.IS_VALID_KEY:is_valid, 
+            constants.VALIDATION_ERRORS_KEY:validation_errors}
 
-# def set_input_gain(args):
-#     is_valid = True
-#     validation_errors = ""
+def set_output_gain(args):
+    is_valid = True
+    validation_errors = ""
+    # Check Output numbers
+    if args["gain"] > 0 or args["gain"] < -100:
+        is_valid = False
+        validation_errors = "output gain must be between -100 and 0 dB"
 
-# def set_input_loss(args):
-#     is_valid = True
-#     validation_errors = ""
+    return {constants.IS_VALID_KEY:is_valid, 
+            constants.VALIDATION_ERRORS_KEY:validation_errors}
+
 
 # def set_channel_frequency(args):
 #     is_valid = True

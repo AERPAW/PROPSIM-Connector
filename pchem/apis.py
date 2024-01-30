@@ -22,7 +22,7 @@ import propsim_interface
 #####################################################################################################
 # API Implementations #
 # Each implementation must create and return the AT command from the provided arguments.
-# Implementations can assume that arguments have already been validated by the corresponding validator.
+# Implementations can assume that arguments have already been validated to be correct by the corresponding validator.
 ######################################################################################################
 
 def get_version(args):
@@ -64,6 +64,15 @@ def close_emulation(args):
 # def enable_input(args):
 #     at_command = "inp:en\n"
 #     return at_command
+
+def set_input_loss(args):
+    at_command = "inp:loss:set " + str(args["input_number"]) + "," + str(args["loss"]) + "\n"
+    return at_command
+
+def set_output_gain(args):
+    at_command = "outp:gain:ch " + str(args["output_number"]) + "," + str(args["gain"]) + "\n"
+    return at_command
+
 
 # A wrapper to execute APIs. Ensures that the API's validator is always called. Returns the PCHEM response.
 def run(api_name, args):
