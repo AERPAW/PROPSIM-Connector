@@ -6,7 +6,7 @@ API Definitions
 ``get_identity()``
    | Returns the following Propsim information: Company Name, Device Name, Serial Number, Firmware Version Number 
    |
-   | `Example`:
+   | `Example`: 
 
 ``get_version()``
    | Returns the standard commands for programmable instuments (SCPI) version of Propsim. The response should be 1999.0.
@@ -58,7 +58,7 @@ API Definitions
 **Channel APIs**
 
 ``set_ouput_gain(<channel_number>, <output_gain>)``
-    | Sets the output gain of the channel, corresponding to the provided ``\<channel_number\>``, to the provided ``\<output_gain\>`` value, in dB.
+    | Sets the output gain of the channel, corresponding to the provided ``<channel_number>``, to the provided ``<output_gain>`` value, in dB.
     |
     | Example:
 
