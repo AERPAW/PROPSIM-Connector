@@ -31,6 +31,9 @@ def edit_emulation(args):
 def start_emulation(args):
     return _no_validation()
 
+def pop_error_queue(args):
+    return _no_validation()
+
 def start_emulation_after_edit(args):
     return _no_validation()
 

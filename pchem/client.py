@@ -45,6 +45,10 @@ def resume_emulation():
     result = call_api("resume_emulation", {})
     return result
 
+def pop_error_queue(args):
+    result = call_api("pop_error_queue", {})
+    return result
+
 def close_emulation():
     result = call_api("close_emulation", {})
     return result

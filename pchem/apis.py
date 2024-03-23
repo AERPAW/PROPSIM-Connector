@@ -5,20 +5,6 @@ import sys
 import validator
 import propsim_interface
 
-# _api_to_at = {
-#     "get_version":"syst:vers?",
-#     "get_identity":"*IDN?",
-#     "run_emulation":"diag:simu:go",
-#     "pause_emulation":"diag:simu:stop",
-#     "continue_emulation":"diag:simu:cont",
-#     "close_emulation":"diag:simu:close",
-#     "set_avg_input_level":"inp:lev:amp:ch",
-#     "set_input_phase_deg": "inp:pha:deg:ch",
-#     "set_input_loss":"inp:loss:set",
-#     "set_ouput_gain":"outp:gain:ch",
-#     "set_output_phase_deg": "outp:pha:deg:ch"
-# }
-
 #####################################################################################################
 # API Implementations #
 # Each implementation must create and return the AT command from the provided arguments.
@@ -43,6 +29,10 @@ def edit_emulation(args):
 
 def start_emulation_after_edit(args):
     at_command = "calc:filt:connect\n"
+    return at_command
+
+def pop_error_queue(args):
+    at_command = "syst:err?\n"
     return at_command
 
 def start_emulation(args):
