@@ -1,6 +1,9 @@
 API Definitions
 ###########################
 
+**API Response Format**
+| To-do
+
 **System Information APIs**
 
 ``get_identity()``

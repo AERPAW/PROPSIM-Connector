@@ -60,4 +60,16 @@ def set_input_loss(input_number, loss):
 def set_output_gain(output_number, gain):
     result = call_api("set_output_gain", {"output_number":output_number, "gain": gain})
     return result
+
+def reserve_ports(radio_nodes):
+    http_response = requests.post("http://" + PCHEM_SERVICE_IP + ":" + str(PCHEM_SERVICE_PORT) + "/ports", 
+                            json={"radio_nodes":radio_nodes, "action":"reserve"})
+    pchem_response = http_response.json()
+    return pchem_response
+    
+def free_ports(radio_nodes):
+    http_response = requests.post("http://" + PCHEM_SERVICE_IP + ":" + str(PCHEM_SERVICE_PORT) + "/ports", 
+                            json={"radio_nodes":radio_nodes, "action":"free"})
+    pchem_response = http_response.json()
+    return pchem_response
     
