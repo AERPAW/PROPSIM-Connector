@@ -1,0 +1,52 @@
+{
+    "ue":
+    {
+        "SPN2":
+        {
+            "mission_format":"custom",
+            "waypoints":
+            [
+                {
+                    "waypoint":[35.728286381019636, -78.6959273, 50],
+                    "speed": 5 
+                },
+                {
+                    "waypoint":[35.7233115, -78.6978936, 50],
+                    "speed": 0
+                }
+            ],
+            "input_port":-1, 
+            "output_port": -1
+        }, 
+        "SPN3":
+        {
+            "mission_format":"custom",
+            "waypoints":
+            [
+                {
+                    "waypoint":[35.7233115, -78.6978936, 50],
+                    "speed": 5
+                },
+                {
+                    "waypoint":[35.728286381019636, -78.6959273, 50],
+                    "speed": 0
+                }
+            ],
+            "input_port":-1, 
+            "output_port": -1
+        }
+    }, 
+    "bs":
+    {
+        "LW1":
+        {
+            "position":[35.727473, -78.695931, 30], "input_port":-1, "output_port": -1
+        }, 
+        "LW2":
+        {
+            "position":[35.728214, -78.700916, 30], "input_port":-1, "output_port": -1
+        }
+    },
+    "path_loss_exponent":2.0,
+    "center_frequency": 2.4e9
+}
