@@ -1,4 +1,4 @@
-from constants import *
+from pchem.constants import *
 
 def create_pchem_response(status=RESPONSE_STATUS.UNKNOWN, error="", result=""):
     pchem_response = {PCHEM_STATUS_KEY: status, 

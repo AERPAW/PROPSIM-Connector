@@ -1,8 +1,9 @@
+from pchem.constants import *
+import pchem.utils
+
+from threading import Lock
 import socket
 import toml
-import utils
-from constants import *
-from threading import Lock
 
 CONFIG_PATH = "./config.toml"
 
@@ -38,9 +39,9 @@ class PropsimSocket(object):
                     response += propsim_connection.recv(1024).decode("utf-8")
                 propsim_connection.close()
             
-            pchem_response = utils.create_pchem_response(RESPONSE_STATUS.OK, "", response.strip())
+            pchem_response = pchem.utils.create_pchem_response(RESPONSE_STATUS.OK, "", response.strip())
         except Exception as e:
-            pchem_response = utils.create_pchem_response(RESPONSE_STATUS.EXECUTION_ERROR, str(e))
+            pchem_response = pchem.utils.create_pchem_response(RESPONSE_STATUS.EXECUTION_ERROR, str(e))
         finally:
             self._propsim_lock.release() 
             return pchem_response

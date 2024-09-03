@@ -1,9 +1,10 @@
-import logger
-from constants import *
-import utils
+from pchem.constants import *
+import pchem.logger
+import pchem.propsim_interface
+import pchem.utils
+import pchem.validator
+
 import sys
-import validator
-import propsim_interface
 
 #####################################################################################################
 # API Implementations #
@@ -66,10 +67,10 @@ def set_output_gain(args):
 
 # A wrapper to execute APIs. Ensures that the API's validator is always called. Returns the PCHEM response.
 def run(api_name, args):
-    pchem_response = utils.create_pchem_response()
-    b_validator_exists = hasattr(validator, api_name) and callable(getattr(validator, api_name))
+    pchem_response = pchem.utils.create_pchem_response()
+    b_validator_exists = hasattr(pchem.validator, api_name) and callable(getattr(pchem.validator, api_name))
     if b_validator_exists:
-        validate_api_func = getattr(validator, api_name)
+        validate_api_func = getattr(pchem.validator, api_name)
         validation_result = validate_api_func(args)
         if validation_result[IS_VALID_KEY]:
             api_module = sys.modules[__name__]
@@ -78,12 +79,12 @@ def run(api_name, args):
                 api_func = getattr(api_module, api_name)
                 at_command = api_func(args)
                 # Execute AT command using the PropSim Interface Singleton
-                pchem_response = propsim_interface.PropsimSocket().execute_at_command(at_command) 
+                pchem_response = pchem.propsim_interface.PropsimSocket().execute_at_command(at_command) 
             else:
-                pchem_response = utils.create_pchem_response(RESPONSE_STATUS.API_NOT_IMPLEMENTED, "API not implemented: " + api_name)
+                pchem_response = pchem.utils.create_pchem_response(RESPONSE_STATUS.API_NOT_IMPLEMENTED, "API not implemented: " + api_name)
         else:
-            pchem_response = utils.create_pchem_response(RESPONSE_STATUS.VALIDATION_ERROR, validation_result[VALIDATION_ERRORS_KEY])
+            pchem_response = pchem.utils.create_pchem_response(RESPONSE_STATUS.VALIDATION_ERROR, validation_result[VALIDATION_ERRORS_KEY])
     else:
-        pchem_response = utils.create_pchem_response(RESPONSE_STATUS.VALIDATOR_NOT_IMPLEMENTED, "Validator not implemented for API: " + str(api_name))
+        pchem_response = pchem.utils.create_pchem_response(RESPONSE_STATUS.VALIDATOR_NOT_IMPLEMENTED, "Validator not implemented for API: " + str(api_name))
     # logger.log(api_name, args, result)
     return pchem_response    
