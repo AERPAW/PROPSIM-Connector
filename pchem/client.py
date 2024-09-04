@@ -1,7 +1,7 @@
 import requests
 
 PCHEM_SERVICE_IP = "127.0.0.1"
-PCHEM_SERVICE_PORT = 8080
+PCHEM_SERVICE_PORT = 3335
 
 def call_api(api_name, api_args):
     # Make an HTTP POST request to the Propsim library

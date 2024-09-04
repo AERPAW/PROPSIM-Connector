@@ -6,13 +6,13 @@ import pchem.logger
 from flask import Flask, json, request
 import toml
 
-CONFIG_PATH = "./config.toml"
+DEFAULT_CONFIG_PATH = "./config.toml"
 
 server_app = Flask(__name__)
 
 def _internal_server_error_response(exception):
     http_response_status = 500 
-    pchem_response = utils.create_pchem_response(RESPONSE_STATUS.INTERNAL_SERVER_ERROR, "Internal Server Error: " + str(exception))
+    pchem_response = pchem.utils.create_pchem_response(RESPONSE_STATUS.INTERNAL_SERVER_ERROR, "Internal Server Error: " + str(exception))
     http_response = server_app.response_class(
         response = json.dumps(pchem_response),
         status = http_response_status,
@@ -59,7 +59,7 @@ def handle_ports():
         pchem_response = {}
         if "action" in request.json:
             action = request.json["action"]
-            with open(CONFIG_PATH, 'r') as config_fp:
+            with open(pchem.utils.config_path, 'r') as config_fp:
                 config = toml.load(config_fp)
                 port_allocation_path = config["propsim"]["port_allocation_record"]
                 with open(port_allocation_path, 'r+') as ports_fp:
@@ -93,7 +93,20 @@ def handle_ports():
         return _internal_server_error_response(e)
 
 if __name__ == '__main__':
-    with open(CONFIG_PATH, 'r') as f:
+    from argparse import ArgumentParser
+
+    parser = ArgumentParser(
+        description="PROPSIM-Connector Server",
+    )
+    parser.add_argument(
+        "--config", help="propsim-connector server configuration file", required=False,
+        default=DEFAULT_CONFIG_PATH,
+    )
+    args, _ = parser.parse_known_args()
+    
+    pchem.utils.config_path = args.config
+
+    with open(pchem.utils.config_path, 'r') as f:
         config = toml.load(f)
         pchem_port = config["pchem_server"]["port"]
         pchem_ip = config["pchem_server"]["bind_ip"]

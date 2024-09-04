@@ -5,7 +5,6 @@ from threading import Lock
 import socket
 import toml
 
-CONFIG_PATH = "./config.toml"
 
 # Singleton class of the TCP connection to Propsim. #
 # Sends AT commands to Propsim and returns the Propsim response #
@@ -16,7 +15,7 @@ class PropsimSocket(object):
         return cls.instance
     
     def __init__(self):
-        with open(CONFIG_PATH, 'r') as f:
+        with open(pchem.utils.config_path, 'r') as f:
             config = toml.load(f)
             self._propsim_ip = config['propsim']['ip']
             self._propsim_port = config['propsim']['port']
