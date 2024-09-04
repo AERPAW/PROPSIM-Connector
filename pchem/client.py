@@ -1,11 +1,10 @@
-import requests
+import pchem.utils
 
-PCHEM_SERVICE_IP = "127.0.0.1"
-PCHEM_SERVICE_PORT = 3335
+import requests
 
 def call_api(api_name, api_args):
     # Make an HTTP POST request to the Propsim library
-    http_response = requests.post("http://" + PCHEM_SERVICE_IP + ":" + str(PCHEM_SERVICE_PORT) + "/api", 
+    http_response = requests.post("http://" + pchem.utils.pchem_ip + ":" + str(pchem.utils.pchem_port) + "/api", 
                             json={"api_name": api_name, "args":api_args})
     pchem_response = http_response.json()
     # Todo: Print if Debug is enabled
@@ -62,13 +61,13 @@ def set_output_gain(output_number, gain):
     return result
 
 def reserve_ports(radio_nodes):
-    http_response = requests.post("http://" + PCHEM_SERVICE_IP + ":" + str(PCHEM_SERVICE_PORT) + "/ports", 
+    http_response = requests.post("http://" + pchem.utils.pchem_ip + ":" + str(pchem.utils.pchem_port) + "/ports", 
                             json={"radio_nodes":radio_nodes, "action":"reserve"})
     pchem_response = http_response.json()
     return pchem_response
     
 def free_ports(radio_nodes):
-    http_response = requests.post("http://" + PCHEM_SERVICE_IP + ":" + str(PCHEM_SERVICE_PORT) + "/ports", 
+    http_response = requests.post("http://" + pchem.utils.pchem_ip + ":" + str(pchem.utils.pchem_port) + "/ports", 
                             json={"radio_nodes":radio_nodes, "action":"free"})
     pchem_response = http_response.json()
     return pchem_response
