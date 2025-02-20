@@ -46,6 +46,30 @@ def resume_emulation(args):
 def close_emulation(args):
     return _no_validation()
 
+def set_channel_gain_imbalance(args):
+    return _no_validation()
+
+def set_channel_group_frequency(args):
+    return _no_validation()
+
+def set_channel_shadowing(args):
+    return _no_validation()
+
+def get_channel_shadowing(args):
+    return _no_validation()
+
+def get_channel_shadowing_state(args):
+    return _no_validation()
+
+def get_output_gain(args):
+    return _no_validation()
+
+def get_input_loss(args):
+    return _no_validation()
+
+def set_channel_shadowing_state(args):
+    return _no_validation()
+
 def set_input_loss(args):
     is_valid = True
     validation_errors = ""

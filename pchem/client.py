@@ -60,6 +60,38 @@ def set_output_gain(output_number, gain):
     result = call_api("set_output_gain", {"output_number":output_number, "gain": gain})
     return result
 
+def set_channel_gain_imbalance(channel_number, gain_imbalance):
+    result = call_api("set_channel_gain_imbalance", {"channel_number":channel_number, "gain_imbalance": gain_imbalance})
+    return result
+
+def set_channel_group_frequency(channel_number, frequency):
+    result = call_api("set_channel_group_frequency", {"channel_number":channel_number, "frequency": frequency})
+    return result
+
+def set_channel_shadowing(channel_number, loss):
+    result = call_api("set_channel_shadowing", {"channel_number":channel_number, "loss": loss})
+    return result
+
+def set_channel_shadowing_state(channel_number, state):
+    result = call_api("set_channel_shadowing_state", {"channel_number":channel_number, "state": state})
+    return result
+
+def get_channel_shadowing(channel_number):
+    result = call_api("get_channel_shadowing", {"channel_number":channel_number})
+    return result
+
+def get_channel_shadowing_state(channel_number):
+    result = call_api("get_channel_shadowing_state", {"channel_number":channel_number})
+    return result
+
+def get_output_gain(channel_number):
+    result = call_api("get_output_gain", {"output_number": channel_number})
+    return result
+
+def get_input_loss(channel_number):
+    result = call_api("get_input_loss", {"input_number": channel_number})
+    return result
+
 def reserve_ports(radio_nodes):
     http_response = requests.post("http://" + pchem.utils.pchem_ip + ":" + str(pchem.utils.pchem_port) + "/ports", 
                             json={"radio_nodes":radio_nodes, "action":"reserve"})

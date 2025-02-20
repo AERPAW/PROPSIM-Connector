@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  pchem-server:
+    build:
+      dockerfile: dockerfile.yml
+    ports:
+      - "3335:3335"
+    image: pchem-server
+    volumes:
+     - ./:/root/pchem-server
+    command: bash -c "cd /root/pchem-server && pip install . && cd pchem && screen -S pchem-server -dm bash -c 'stdbuf -oL -eL python3 server.py'"
+
+    

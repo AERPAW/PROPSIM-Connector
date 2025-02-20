@@ -52,16 +52,48 @@ def close_emulation(args):
     at_command = "diag:simu:close\n"
     return at_command
 
-# def enable_input(args):
-#     at_command = "inp:en\n"
-#     return at_command
+def enable_input(args):
+    at_command = "inp:en\n"
+    return at_command
 
 def set_input_loss(args):
     at_command = "inp:loss:set " + str(args["input_number"]) + "," + str(args["loss"]) + "\n"
     return at_command
 
+def get_input_loss(args):
+    at_command = "inp:loss:get? " + str(args["input_number"]) + "\n"
+    return at_command
+
 def set_output_gain(args):
     at_command = "outp:gain:ch " + str(args["output_number"]) + "," + str(args["gain"]) + "\n"
+    return at_command
+
+def get_output_gain(args):
+    at_command = "outp:gain:ch? " + str(args["output_number"]) + "\n"
+    return at_command
+
+def set_channel_gain_imbalance(args):
+    at_command = "ch:mod:gain:adj:set " + str(args["channel_number"]) + "," + str(args["gain_imbalance"]) + "\n"
+    return at_command
+
+def set_channel_group_frequency(args):
+    at_command = "calc:filt:cent:ch " + str(args["channel_number"]) + "," + str(args["frequency"]) + "\n"
+    return at_command
+
+def set_channel_shadowing(args):
+    at_command = "link:shadowing:offset:ch " + str(args["channel_number"]) + "," + str(args["loss"]) + "\n"
+    return at_command
+
+def get_channel_shadowing(args):
+    at_command = "link:shadowing:offset:ch? " + str(args["channel_number"]) + "\n"
+    return at_command
+
+def get_channel_shadowing_state(args):
+    at_command = "link:shadowing:enable:ch? " + str(args["channel_number"]) + "\n"
+    return at_command
+
+def set_channel_shadowing_state(args):
+    at_command = "link:shadowing:enable:ch? " + str(args["channel_number"]) + "," + str(args["state"]) + "\n"
     return at_command
 
 
