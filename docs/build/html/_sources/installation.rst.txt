@@ -1,2 +1,2 @@
-PCHEM Installation
+Installation
 ###########################
