@@ -6,7 +6,9 @@ RUN apt-get install -y python3-pip
 RUN apt-get install -y git
 RUN apt-get install -y screen
 
-RUN git clone https://ssingh28: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@github.ncsu.edu/AERPAW/PROPSIM-Connector.git /root/propsim-connector
+ARG GIT_TOKEN=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
+
+RUN git clone https://ssingh28:$GIT_TOKEN@github.ncsu.edu/AERPAW/PROPSIM-Connector.git /root/propsim-connector
 
 RUN cd /root/propsim-connector && pip install .
 
