@@ -1,10 +1,10 @@
+from pchem.constants import *
+import pchem.utils
+
+from threading import Lock
 import socket
 import toml
-import utils
-from constants import *
-from threading import Lock
 
-CONFIG_PATH = "./config.toml"
 
 # Singleton class of the TCP connection to Propsim. #
 # Sends AT commands to Propsim and returns the Propsim response #
@@ -15,7 +15,7 @@ class PropsimSocket(object):
         return cls.instance
     
     def __init__(self):
-        with open(CONFIG_PATH, 'r') as f:
+        with open(pchem.utils.config_path, 'r') as f:
             config = toml.load(f)
             self._propsim_ip = config['propsim']['ip']
             self._propsim_port = config['propsim']['port']
@@ -38,9 +38,9 @@ class PropsimSocket(object):
                     response += propsim_connection.recv(1024).decode("utf-8")
                 propsim_connection.close()
             
-            pchem_response = utils.create_pchem_response(RESPONSE_STATUS.OK, "", response.strip())
+            pchem_response = pchem.utils.create_pchem_response(RESPONSE_STATUS.OK, "", response.strip())
         except Exception as e:
-            pchem_response = utils.create_pchem_response(RESPONSE_STATUS.EXECUTION_ERROR, str(e))
+            pchem_response = pchem.utils.create_pchem_response(RESPONSE_STATUS.EXECUTION_ERROR, str(e))
         finally:
             self._propsim_lock.release() 
             return pchem_response

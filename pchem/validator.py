@@ -1,5 +1,5 @@
-import constants 
-import utils
+import pchem.constants 
+import pchem.utils
 
 # Validation logic for API arguments. 
 # Each validator must return: 
@@ -13,20 +13,20 @@ def get_identity(args):
     return _no_validation()
 
 def open_emulation(args):
-    is_valid = utils.check_file_extension(args["sim_file_path"], ".smu")
+    is_valid = pchem.utils.check_file_extension(args["sim_file_path"], ".smu")
     validation_errors = ""
     if not is_valid:
         validation_errors = '"The Propsim simulation file path must have an extension ".sum"'
-    return {constants.IS_VALID_KEY:is_valid, 
-            constants.VALIDATION_ERRORS_KEY:validation_errors}
+    return {pchem.constants.IS_VALID_KEY:is_valid, 
+            pchem.constants.VALIDATION_ERRORS_KEY:validation_errors}
 
 def edit_emulation(args):
-    is_valid = utils.check_file_extension(args["sim_file_path"], ".sum")
+    is_valid = pchem.utils.check_file_extension(args["sim_file_path"], ".sum")
     validation_errors = ""
     if not is_valid:
         validation_errors = '"The Propsim simulation file path must have an extension ".sum"'
-    return {constants.IS_VALID_KEY:is_valid, 
-            constants.VALIDATION_ERRORS_KEY:validation_errors}
+    return {pchem.constants.IS_VALID_KEY:is_valid, 
+            pchem.constants.VALIDATION_ERRORS_KEY:validation_errors}
 
 def start_emulation(args):
     return _no_validation()
@@ -46,6 +46,30 @@ def resume_emulation(args):
 def close_emulation(args):
     return _no_validation()
 
+def set_channel_gain_imbalance(args):
+    return _no_validation()
+
+def set_channel_group_frequency(args):
+    return _no_validation()
+
+def set_channel_shadowing(args):
+    return _no_validation()
+
+def get_channel_shadowing(args):
+    return _no_validation()
+
+def get_channel_shadowing_state(args):
+    return _no_validation()
+
+def get_output_gain(args):
+    return _no_validation()
+
+def get_input_loss(args):
+    return _no_validation()
+
+def set_channel_shadowing_state(args):
+    return _no_validation()
+
 def set_input_loss(args):
     is_valid = True
     validation_errors = ""
@@ -54,8 +78,8 @@ def set_input_loss(args):
         is_valid = False
         validation_errors = "loss must be between -100 and 100 dB"
 
-    return {constants.IS_VALID_KEY:is_valid, 
-            constants.VALIDATION_ERRORS_KEY:validation_errors}
+    return {pchem.constants.IS_VALID_KEY:is_valid, 
+            pchem.constants.VALIDATION_ERRORS_KEY:validation_errors}
 
 def set_output_gain(args):
     is_valid = True
@@ -65,8 +89,8 @@ def set_output_gain(args):
         is_valid = False
         validation_errors = "output gain must be between -100 and 0 dB"
 
-    return {constants.IS_VALID_KEY:is_valid, 
-            constants.VALIDATION_ERRORS_KEY:validation_errors}
+    return {pchem.constants.IS_VALID_KEY:is_valid, 
+            pchem.constants.VALIDATION_ERRORS_KEY:validation_errors}
 
 
 # def set_channel_frequency(args):
@@ -76,5 +100,5 @@ def set_output_gain(args):
 def _no_validation():
     is_valid = True
     validation_errors = ""
-    return {constants.IS_VALID_KEY:is_valid, 
-            constants.VALIDATION_ERRORS_KEY:validation_errors}
+    return {pchem.constants.IS_VALID_KEY:is_valid, 
+            pchem.constants.VALIDATION_ERRORS_KEY:validation_errors}

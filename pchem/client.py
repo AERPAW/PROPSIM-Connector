@@ -1,11 +1,10 @@
-import requests
+import pchem.utils
 
-PCHEM_SERVICE_IP = "127.0.0.1"
-PCHEM_SERVICE_PORT = 8080
+import requests
 
 def call_api(api_name, api_args):
     # Make an HTTP POST request to the Propsim library
-    http_response = requests.post("http://" + PCHEM_SERVICE_IP + ":" + str(PCHEM_SERVICE_PORT) + "/api", 
+    http_response = requests.post("http://" + pchem.utils.pchem_ip + ":" + str(pchem.utils.pchem_port) + "/api", 
                             json={"api_name": api_name, "args":api_args})
     pchem_response = http_response.json()
     # Todo: Print if Debug is enabled
@@ -61,14 +60,46 @@ def set_output_gain(output_number, gain):
     result = call_api("set_output_gain", {"output_number":output_number, "gain": gain})
     return result
 
+def set_channel_gain_imbalance(channel_number, gain_imbalance):
+    result = call_api("set_channel_gain_imbalance", {"channel_number":channel_number, "gain_imbalance": gain_imbalance})
+    return result
+
+def set_channel_group_frequency(channel_number, frequency):
+    result = call_api("set_channel_group_frequency", {"channel_number":channel_number, "frequency": frequency})
+    return result
+
+def set_channel_shadowing(channel_number, loss):
+    result = call_api("set_channel_shadowing", {"channel_number":channel_number, "loss": loss})
+    return result
+
+def set_channel_shadowing_state(channel_number, state):
+    result = call_api("set_channel_shadowing_state", {"channel_number":channel_number, "state": state})
+    return result
+
+def get_channel_shadowing(channel_number):
+    result = call_api("get_channel_shadowing", {"channel_number":channel_number})
+    return result
+
+def get_channel_shadowing_state(channel_number):
+    result = call_api("get_channel_shadowing_state", {"channel_number":channel_number})
+    return result
+
+def get_output_gain(channel_number):
+    result = call_api("get_output_gain", {"output_number": channel_number})
+    return result
+
+def get_input_loss(channel_number):
+    result = call_api("get_input_loss", {"input_number": channel_number})
+    return result
+
 def reserve_ports(radio_nodes):
-    http_response = requests.post("http://" + PCHEM_SERVICE_IP + ":" + str(PCHEM_SERVICE_PORT) + "/ports", 
+    http_response = requests.post("http://" + pchem.utils.pchem_ip + ":" + str(pchem.utils.pchem_port) + "/ports", 
                             json={"radio_nodes":radio_nodes, "action":"reserve"})
     pchem_response = http_response.json()
     return pchem_response
     
 def free_ports(radio_nodes):
-    http_response = requests.post("http://" + PCHEM_SERVICE_IP + ":" + str(PCHEM_SERVICE_PORT) + "/ports", 
+    http_response = requests.post("http://" + pchem.utils.pchem_ip + ":" + str(pchem.utils.pchem_port) + "/ports", 
                             json={"radio_nodes":radio_nodes, "action":"free"})
     pchem_response = http_response.json()
     return pchem_response

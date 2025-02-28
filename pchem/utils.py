@@ -1,4 +1,8 @@
-from constants import *
+from pchem.constants import *
+
+config_path = "./config.toml"
+pchem_ip = "127.0.0.1"
+pchem_port = "3335"
 
 def create_pchem_response(status=RESPONSE_STATUS.UNKNOWN, error="", result=""):
     pchem_response = {PCHEM_STATUS_KEY: status, 
