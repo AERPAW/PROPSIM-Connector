@@ -6,6 +6,7 @@ services:
     ports:
       - "3335:3335"
     image: pchem-server
+    restart: always
   
 
     
