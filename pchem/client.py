@@ -56,6 +56,10 @@ def set_input_loss(input_number, loss):
     result = call_api("set_input_loss", {"input_number":input_number, "loss": loss})
     return result
 
+def set_output_loss(output_number, loss):
+    result = call_api("set_input_loss", {"output_number":output_number, "loss": loss})
+    return result
+
 def set_output_gain(output_number, gain):
     result = call_api("set_output_gain", {"output_number":output_number, "gain": gain})
     return result
@@ -88,8 +92,16 @@ def get_output_gain(channel_number):
     result = call_api("get_output_gain", {"output_number": channel_number})
     return result
 
-def get_input_loss(channel_number):
-    result = call_api("get_input_loss", {"input_number": channel_number})
+def get_input_loss(input_number):
+    result = call_api("get_input_loss", {"input_number": input_number})
+    return result
+
+def get_output_loss(output_number):
+    result = call_api("get_ouptut_loss", {"ouptut_number": output_number})
+    return result
+
+def get_route_path_id(channel_number):
+    result = call_api("get_route_path_id", {"channel_number": channel_number})
     return result
 
 def reserve_ports(radio_nodes):

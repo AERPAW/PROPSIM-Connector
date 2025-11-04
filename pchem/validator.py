@@ -67,10 +67,27 @@ def get_output_gain(args):
 def get_input_loss(args):
     return _no_validation()
 
+def get_output_loss(args):
+    return _no_validation()
+
+def get_route_path_id(args):
+    return _no_validation()
+
 def set_channel_shadowing_state(args):
     return _no_validation()
 
 def set_input_loss(args):
+    is_valid = True
+    validation_errors = ""
+    # Check Input numbers
+    if args["loss"] > 100 or args["loss"] < -100:
+        is_valid = False
+        validation_errors = "loss must be between -100 and 100 dB"
+
+    return {pchem.constants.IS_VALID_KEY:is_valid, 
+            pchem.constants.VALIDATION_ERRORS_KEY:validation_errors}
+
+def set_output_loss(args):
     is_valid = True
     validation_errors = ""
     # Check Input numbers

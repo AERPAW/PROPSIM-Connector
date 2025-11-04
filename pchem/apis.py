@@ -64,12 +64,24 @@ def get_input_loss(args):
     at_command = "inp:loss:get? " + str(args["input_number"]) + "\n"
     return at_command
 
+def set_output_loss(args):
+    at_command = "outp:loss:set " + str(args["output_number"]) + "," + str(args["loss"]) + "\n"
+    return at_command
+
+def get_output_loss(args):
+    at_command = "outp:loss:get? " + str(args["output_number"]) + "\n"
+    return at_command
+
 def set_output_gain(args):
     at_command = "outp:gain:ch " + str(args["output_number"]) + "," + str(args["gain"]) + "\n"
     return at_command
 
 def get_output_gain(args):
     at_command = "outp:gain:ch? " + str(args["output_number"]) + "\n"
+    return at_command
+
+def get_route_path_id(args):
+    at_command = "ROUT:PATH:ID? " + str(args["channel_number"]) + "\n"
     return at_command
 
 def set_channel_gain_imbalance(args):
