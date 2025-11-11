@@ -81,7 +81,7 @@ def get_output_gain(args):
     return at_command
 
 def get_route_path_id(args):
-    at_command = "ROUT:PATH:ID? " + str(args["channel_number"]) + "\n"
+    at_command = "rout:path:id? " + str(args["channel_number"]) + "\n"
     return at_command
 
 def set_channel_gain_imbalance(args):
@@ -105,7 +105,7 @@ def get_channel_shadowing_state(args):
     return at_command
 
 def set_channel_shadowing_state(args):
-    at_command = "link:shadowing:enable:ch? " + str(args["channel_number"]) + "," + str(args["state"]) + "\n"
+    at_command = "link:shadowing:enable:ch " + str(args["channel_number"]) + "," + str(args["state"]) + "\n"
     return at_command
 
 

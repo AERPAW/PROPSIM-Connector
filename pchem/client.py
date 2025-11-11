@@ -57,7 +57,7 @@ def set_input_loss(input_number, loss):
     return result
 
 def set_output_loss(output_number, loss):
-    result = call_api("set_input_loss", {"output_number":output_number, "loss": loss})
+    result = call_api("set_output_loss", {"output_number":output_number, "loss": loss})
     return result
 
 def set_output_gain(output_number, gain):
@@ -97,7 +97,7 @@ def get_input_loss(input_number):
     return result
 
 def get_output_loss(output_number):
-    result = call_api("get_ouptut_loss", {"ouptut_number": output_number})
+    result = call_api("get_output_loss", {"output_number": output_number})
     return result
 
 def get_route_path_id(channel_number):

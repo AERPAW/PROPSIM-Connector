@@ -80,7 +80,7 @@ def set_input_loss(args):
     is_valid = True
     validation_errors = ""
     # Check Input numbers
-    if args["loss"] > 100 or args["loss"] < -100:
+    if float(args["loss"]) > 100 or float(args["loss"]) < -100:
         is_valid = False
         validation_errors = "loss must be between -100 and 100 dB"
 
@@ -91,7 +91,7 @@ def set_output_loss(args):
     is_valid = True
     validation_errors = ""
     # Check Input numbers
-    if args["loss"] > 100 or args["loss"] < -100:
+    if float(args["loss"]) > 100 or float(args["loss"]) < -100:
         is_valid = False
         validation_errors = "loss must be between -100 and 100 dB"
 
@@ -102,7 +102,7 @@ def set_output_gain(args):
     is_valid = True
     validation_errors = ""
     # Check Output numbers
-    if args["gain"] > 0 or args["gain"] < -100:
+    if float(args["gain"]) > 0 or float(args["gain"]) < -100:
         is_valid = False
         validation_errors = "output gain must be between -100 and 0 dB"
 
