@@ -1,0 +1,26 @@
+{
+  "LPN-1_B205-1_OUT": {
+    "Unit": 2,
+    "Connector": "OUTPUT 1"
+  },
+  "LPN-1_B205-1_IN_OUT": {
+    "Unit": 2,
+    "Connector": "COMMON 1"
+  },
+  "FN-1_B210-1-RFA_IN_OUT": {
+    "Unit": 0,
+    "Connector": "COMMON 5"
+  },
+  "FN-1_B210-1-RFA_OUT": {
+    "Unit": 0,
+    "Connector": "OUTPUT 5"
+  },
+  "FN-2_B205-1_OUT": {
+    "Unit": 2,
+    "Connector": "OUTPUT 5"
+  },
+  "FN-2_B205-1_IN_OUT": {
+    "Unit": 2,
+    "Connector": "COMMON 5"
+  }
+}
