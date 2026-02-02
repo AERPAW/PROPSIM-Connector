@@ -1,5 +1,4 @@
 import pchem.utils
-
 import requests
 
 def call_api(api_name, api_args):
@@ -104,6 +103,10 @@ def get_route_path_id(channel_number):
     result = call_api("get_route_path_id", {"channel_number": channel_number})
     return result
 
+def set_mobile_speed(channel_number, speed_value, speed_units="km/h"):
+    result = call_api("set_mobile_speed", {"channel_number": channel_number, "speed_value": speed_value, "speed_units": speed_units})
+    return result
+
 def reserve_ports(radio_nodes):
     http_response = requests.post("http://" + pchem.utils.pchem_ip + ":" + str(pchem.utils.pchem_port) + "/ports", 
                             json={"radio_nodes":radio_nodes, "action":"reserve"})
@@ -115,4 +118,4 @@ def free_ports(radio_nodes):
                             json={"radio_nodes":radio_nodes, "action":"free"})
     pchem_response = http_response.json()
     return pchem_response
-    
+

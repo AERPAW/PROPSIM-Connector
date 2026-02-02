@@ -12,6 +12,7 @@ import sys
 # Implementations can assume that arguments have already been validated to be correct by the corresponding validator.
 ######################################################################################################
 
+
 def get_version(args):
     at_command = "syst:vers?\n"
     return at_command
@@ -108,6 +109,10 @@ def set_channel_shadowing_state(args):
     at_command = "link:shadowing:enable:ch " + str(args["channel_number"]) + "," + str(args["state"]) + "\n"
     return at_command
 
+def set_mobile_speed(args):
+    at_command = "diag:simu:mob:man:ch " + str(args["channel_number"]) + "," + str(args["speed_value"]) + "\n"
+    return at_command
+
 
 # A wrapper to execute APIs. Ensures that the API's validator is always called. Returns the PCHEM response.
 def run(api_name, args):
@@ -116,6 +121,7 @@ def run(api_name, args):
     if b_validator_exists:
         validate_api_func = getattr(pchem.validator, api_name)
         validation_result = validate_api_func(args)
+        print(validation_result)
         if validation_result[IS_VALID_KEY]:
             api_module = sys.modules[__name__]
             api_implemented = hasattr(api_module, api_name) and callable(getattr(api_module, api_name))

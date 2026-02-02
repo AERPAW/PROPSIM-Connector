@@ -7,6 +7,7 @@ VALIDATION_ERRORS_KEY = "validation_errors"
 PCHEM_ERROR_KEY = "errors"
 PCHEM_RESULT_KEY = "result"
 PCHEM_STATUS_KEY = "status"
+PROPSIM_DEFAULT_SPEED_UNITS  = "km/h"
 
 ###########################################
 # Enum Defintions #

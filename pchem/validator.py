@@ -52,6 +52,7 @@ def set_channel_gain_imbalance(args):
 def set_channel_group_frequency(args):
     return _no_validation()
 
+# loss is measured in dB, and should be between 1 to 5 dB, as per the PROPSIM manual
 def set_channel_shadowing(args):
     return _no_validation()
 
@@ -87,6 +88,10 @@ def set_input_loss(args):
     return {pchem.constants.IS_VALID_KEY:is_valid, 
             pchem.constants.VALIDATION_ERRORS_KEY:validation_errors}
 
+
+def set_mobile_speed(args):
+    return _no_validation()
+
 def set_output_loss(args):
     is_valid = True
     validation_errors = ""
@@ -108,11 +113,6 @@ def set_output_gain(args):
 
     return {pchem.constants.IS_VALID_KEY:is_valid, 
             pchem.constants.VALIDATION_ERRORS_KEY:validation_errors}
-
-
-# def set_channel_frequency(args):
-#     is_valid = True
-#     validation_errors = ""
 
 def _no_validation():
     is_valid = True
