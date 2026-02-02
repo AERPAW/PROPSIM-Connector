@@ -12,6 +12,6 @@ RUN git clone https://ssingh28:$GIT_TOKEN@github.ncsu.edu/AERPAW/PROPSIM-Connect
 
 RUN cd /root/propsim-connector && pip install .
 
-CMD cd /root/propsim-connector && screen -S pchem-server -dm bash -c 'stdbuf -oL -eL python3 server.py'"
+CMD cd /root/propsim-connector && screen -S pchem-server -dm bash -c 'stdbuf -oL -eL python3 server.py'
 
 
