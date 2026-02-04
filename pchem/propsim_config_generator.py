@@ -1,5 +1,5 @@
 """
-PROPSim Configuration Generator
+PROPSIM Configuration Generator
 
 Generates .smu configuration files for PROPSim simulations given the IDs of N radio nodes.
 Each RF-Chain of a USRP is considered a radio, e.g. FN1_B210-RFA or FN1_B210-RFB
@@ -13,7 +13,7 @@ def generate_propsim_config(
     radio_names: List[str],
     connector_config_file: Optional[str] = None
 ) -> str:
-    """Generate a PROPSim simulation configuration file."""
+    """Generate a PROPSIM simulation configuration file."""
 
     connector_config: Dict = {}
     if connector_config_file:
@@ -122,14 +122,14 @@ def _generate_channel_sections(radio_names: List[str]) -> List[str]:
                 continue
             CIR_FILE = "One tap constant_0.ir"
             CIR_CONTROL = f"One tap constant_0_{channel_id}_F.sim"
-            direction = "UL"
+            direction = "UL" # Does this matter?
             CIR_UPDATE_RATE = 2.668512762
 
             sections.extend([
                 f"[Channel {channel_id}]",
                 f"Input = {i}",
                 f"Output = {j}",
-                "CirUpdateRate = {CIR_UPDATE_RATE} Hz",
+                f"CirUpdateRate = {CIR_UPDATE_RATE} Hz",
                 "SubGroup = 10000",
                 f"CirSourceFile = ..\\NCSU\\{CIR_FILE}",
                 f"CirControlFile = {CIR_CONTROL}",
