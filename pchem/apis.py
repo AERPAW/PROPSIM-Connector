@@ -113,11 +113,31 @@ def set_mobile_speed(args):
     at_command = "diag:simu:mob:man:ch " + str(args["channel_number"]) + "," + str(args["speed_value"]) + "\n"
     return at_command
 
+def set_group_shadowing_state(args):
+    at_command = "GROup:SHADowing:ENable:CH " + str(args["group_number"]) + "," + str(args["state"]) + "\n"
+    return at_command
+
+def get_group_shadowing_state(args):
+    at_command = "GROup:SHADowing:ENable:CH? " + str(args["group_number"])  + "\n"
+    return at_command
+
+def set_group_shadowing(args):
+    at_command = "GROup:Shadowing:OFFSET:CH " + str(args["group_number"]) + "," + str(args["loss"]) + "\n"
+    return at_command
+
+def get_group_shadowing(args):
+    at_command = "GROup:Shadowing:OFFSET:CH? " + str(args["group_number"]) + "\n"
+    return at_command
+
+def measure_output_power(args):
+    at_command = "OUTPut:MEASure:RESult:GET? " + str(args["output_number"]) + "," + str(args["option"]) + "\n"
+    return at_command
 
 # A wrapper to execute APIs. Ensures that the API's validator is always called. Returns the PCHEM response.
 def run(api_name, args):
     pchem_response = pchem.utils.create_pchem_response()
     b_validator_exists = hasattr(pchem.validator, api_name) and callable(getattr(pchem.validator, api_name))
+    print(api_name, args)
     if b_validator_exists:
         validate_api_func = getattr(pchem.validator, api_name)
         validation_result = validate_api_func(args)
@@ -125,9 +145,12 @@ def run(api_name, args):
         if validation_result[IS_VALID_KEY]:
             api_module = sys.modules[__name__]
             api_implemented = hasattr(api_module, api_name) and callable(getattr(api_module, api_name))
+            print(api_implemented)
             if api_implemented:
                 api_func = getattr(api_module, api_name)
                 at_command = api_func(args)
+                    
+                print(at_command)
                 # Execute AT command using the PropSim Interface Singleton
                 pchem_response = pchem.propsim_interface.PropsimSocket().execute_at_command(at_command) 
             else:

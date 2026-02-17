@@ -91,12 +91,33 @@ def get_output_gain(channel_number):
     result = call_api("get_output_gain", {"output_number": channel_number})
     return result
 
+def get_group_shadowing_state(group_number):
+    result = call_api("get_group_shadowing_state", {"group_number":group_number})
+    return result
+
+def set_group_shadowing_state(group_number, state):
+    result = call_api("set_group_shadowing_state", {"group_number":group_number, "state": state})
+    return result
+
+def get_group_shadowing(group_number):
+    result = call_api("get_group_shadowing", {"group_number":group_number})
+    return result
+
+def set_group_shadowing(group_number, state):
+    result = call_api("set_group_shadowing", {"group_number":group_number, "loss": state})
+    return result
+
 def get_input_loss(input_number):
     result = call_api("get_input_loss", {"input_number": input_number})
     return result
 
 def get_output_loss(output_number):
     result = call_api("get_output_loss", {"output_number": output_number})
+    return result
+
+
+def measure_output_power(output_number, option):
+    result = call_api("measure_output_power", {"output_number": output_number, "option": option})
     return result
 
 def get_route_path_id(channel_number):

@@ -77,6 +77,22 @@ def get_route_path_id(args):
 def set_channel_shadowing_state(args):
     return _no_validation()
 
+def get_group_shadowing_state(args):
+    return _no_validation()
+
+def set_group_shadowing_state(args):
+    return _no_validation()
+
+
+def set_group_shadowing(args):
+    return _no_validation()
+
+def get_group_shadowing(args):
+    return _no_validation()
+
+def measure_output_power(args):
+    return _no_validation()
+
 def set_input_loss(args):
     is_valid = True
     validation_errors = ""
