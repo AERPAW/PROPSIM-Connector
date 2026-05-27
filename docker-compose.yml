@@ -2,11 +2,14 @@ version: '3.8'
 services:
   pchem-server:
     build:
-       dockerfile: Dockerfile
+      context: .          
+      dockerfile: Dockerfile
+      network: host      
     ports:
       - "3335:3335"
     image: pchem-server
-    restart: always
+
+
   
 
     
