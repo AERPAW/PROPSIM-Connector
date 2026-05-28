@@ -53,6 +53,10 @@ def close_emulation(args):
     at_command = "diag:simu:close\n"
     return at_command
 
+def query_complete(args):
+    at_command = "*OPC?\n"
+    return at_command
+
 def enable_input(args):
     at_command = "inp:en\n"
     return at_command
@@ -87,6 +91,10 @@ def get_route_path_id(args):
 
 def set_channel_gain_imbalance(args):
     at_command = "ch:mod:gain:adj:set " + str(args["channel_number"]) + "," + str(args["gain_imbalance"]) + "\n"
+    return at_command
+
+def get_channel_gain_imbalance(args):
+    at_command = "ch:mod:gain:adj:get? " + str(args["channel_number"]) + "\n"
     return at_command
 
 def set_channel_group_frequency(args):
