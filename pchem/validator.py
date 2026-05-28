@@ -46,7 +46,13 @@ def resume_emulation(args):
 def close_emulation(args):
     return _no_validation()
 
+def query_complete(args):
+    return _no_validation()
+
 def set_channel_gain_imbalance(args):
+    return _no_validation()
+
+def get_channel_gain_imbalance(args):
     return _no_validation()
 
 def set_channel_group_frequency(args):
