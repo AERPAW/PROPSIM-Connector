@@ -12,7 +12,6 @@ RUN git clone https://ssinghjah:$GIT_TOKEN@github.com/AERPAW/PROPSIM-Connector.g
 
 RUN cd /root/propsim-connector && pip install .
 
-
 WORKDIR /root/propsim-connector/pchem
 CMD ["python3", "server.py"]
 

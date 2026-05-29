@@ -4,10 +4,9 @@ services:
     build:
       context: .          
       dockerfile: Dockerfile
-      network: host      
-    ports:
-      - "3335:3335"
+      network: host
     image: pchem-server
+    network_mode: host
 
 
   
