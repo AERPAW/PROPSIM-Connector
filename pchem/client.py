@@ -51,6 +51,10 @@ def close_emulation():
     result = call_api("close_emulation", {})
     return result
 
+def query_complete():
+    result = call_api("query_complete", {})
+    return result
+
 def set_input_loss(input_number, loss):
     result = call_api("set_input_loss", {"input_number":input_number, "loss": loss})
     return result
@@ -65,6 +69,10 @@ def set_output_gain(output_number, gain):
 
 def set_channel_gain_imbalance(channel_number, gain_imbalance):
     result = call_api("set_channel_gain_imbalance", {"channel_number":channel_number, "gain_imbalance": gain_imbalance})
+    return result
+
+def get_channel_gain_imbalance(channel_number):
+    result = call_api("get_channel_gain_imbalance", {"channel_number": channel_number})
     return result
 
 def set_channel_group_frequency(channel_number, frequency):
